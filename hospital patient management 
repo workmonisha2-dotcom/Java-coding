@@ -1,0 +1,25 @@
+class Patient {
+    String name;
+    int age;
+    String disease;
+
+    void getData(String n, int a, String d) {
+        name = n;
+        age = a;
+        disease = d;
+    }
+
+    void display() {
+        System.out.println("Patient Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Disease: " + disease);
+    }
+}
+
+public class HospitalApp {
+    public static void main(String[] args) {
+        Patient p = new Patient();
+        p.getData("Moni", 20, "Fever");
+        p.display();
+    }
+}
