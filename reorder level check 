@@ -1,0 +1,23 @@
+import java.util.Scanner;
+public class ReorderLevelCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        // Input array size
+        System.out.print("Enter number of items: ");
+        int n = sc.nextInt();
+        int[] stock = new int[n];
+        // Input stock values
+        System.out.println("Enter stock quantities:");
+        for (int i = 0; i < n; i++) {
+            stock[i] = sc.nextInt();
+        }
+        // Input reorder level
+        System.out.print("Enter reorder level: ");
+        int R = sc.nextInt();
+        int count = 0;
+// Count items below reorder level
+        for (int i = 0; i < stock.length; i++) {
+            if (stock[i] < R) {
+                count++;
+            }
+        }
