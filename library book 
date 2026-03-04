@@ -1,0 +1,40 @@
+
+import java.util.Scanner;
+class Book {
+    int bookId;
+    String title;
+    boolean isIssued;
+    void issueBook() {
+        if (!isIssued) {
+            isIssued = true;
+            System.out.println("Book Issued");
+        } else {
+            System.out.println("Book already issued");
+        }
+    }
+        void returnBook() {
+        if (isIssued) {
+            isIssued = false;
+            System.out.println("Book Returned");
+        } else {
+            System.out.println("Book was not issued");
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Book b = new Book();
+        b.isIssued = sc.nextBoolean(); // initial status
+        System.out.print("Enter operation (issue/return): ");
+        String op = sc.next();
+        if (op.equalsIgnoreCase("issue")) {
+            b.issueBook();
+        } else if (op.equalsIgnoreCase("return")) {
+            b.returnBook();
+        } else {
+            System.out.println("Invalid operation");
+        }
+        sc.close();
+    }
+}
