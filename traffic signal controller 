@@ -1,0 +1,23 @@
+
+
+import java.util.Scanner;
+public class TrafficSignal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter signal code: ");
+        int signalCode = sc.nextInt();
+        if (signalCode == 1) {
+            System.out.println("Stop");
+        } 
+        else if (signalCode == 2) {
+            System.out.println("Ready");
+        } 
+        else if (signalCode == 3) {
+            System.out.println("Go");
+        } 
+        else {
+            System.out.println("Invalid signal code");
+        }
+        sc.close();
+    }
+}
