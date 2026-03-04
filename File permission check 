@@ -1,0 +1,14 @@
+
+import java.util.Scanner;
+public class FilePermissionCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter permission value: ");
+        int permission = sc.nextInt();
+// Read = 4, Write = 2, Execute = 1
+        System.out.println("Read: " + ((permission & 4) != 0 ? "Yes" : "No"));
+        System.out.println("Write: " + ((permission & 2) != 0 ? "Yes" : "No"));
+        System.out.println("Execute: " + ((permission & 1) != 0 ? "Yes" : "No"));
+        sc.close();
+    }
+}
