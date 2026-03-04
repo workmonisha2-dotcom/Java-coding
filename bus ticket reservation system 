@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+class BusTicket {
+    String passengerName;
+    String destination;
+    int numberOfTickets;
+    double ticketPrice = 250;   // price per ticket
+
+    void getDetails(String name, String dest, int tickets) {
+        passengerName = name;
+        destination = dest;
+        numberOfTickets = tickets;
+    }
+
+    double calculateFare() {
+        return numberOfTickets * ticketPrice;
+    }
+
+    void displayTicket() {
+        System.out.println("\n----- TICKET DETAILS -----");
+        System.out.println("Passenger Name: " + passengerName);
+        System.out.println("Destination: " + destination);
+        System.out.println("Number of Tickets: " + numberOfTickets);
+        System.out.println("Total Fare: " + calculateFare());
+    }
+}
+
+public class BusReservation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        BusTicket ticket = new BusTicket();
+
+        System.out.print("Enter Passenger Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Destination: ");
+        String destination = sc.nextLine();
+
+        System.out.print("Enter Number of Tickets: ");
+        int tickets = sc.nextInt();
+
+        ticket.getDetails(name, destination, tickets);
+        ticket.displayTicket();
+    }
+}
