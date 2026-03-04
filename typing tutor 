@@ -1,0 +1,25 @@
+
+/*
+<applet code ="mypack.TypingTutorApplet" width="300" height="200">
+</applet>
+*/
+package mypack;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+public class TypingTutorApplet extends Applet implements KeyListener {
+    String text = "Type here: ";
+    public void init() {
+        addKeyListener(this);
+        setFocusable(true);
+    }
+    public void keyTyped(KeyEvent e) {
+        text = text + e.getKeyChar();
+        repaint();
+    }
+    public void keyPressed(KeyEvent e) { }
+    public void keyReleased(KeyEvent e) { }
+    public void paint(Graphics g) {
+        g.drawString(text, 20, 50);
+    }
+}
