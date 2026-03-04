@@ -1,0 +1,28 @@
+
+import java.util.Scanner;
+class Shape {
+    double area() { return 0; }
+}
+class Rectangle extends Shape {
+    double l, b;
+    Rectangle(double l, double b) { this.l=l; this.b=b; }
+    double area() { return l*b; }
+}
+class Circle extends Shape {
+    double r;
+    Circle(double r) { this.r=r; }
+    double area() { return 3.14*r*r; }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String shape = sc.next();
+        Shape s;
+        if(shape.equalsIgnoreCase("Rectangle"))
+            s = new Rectangle(sc.nextDouble(), sc.nextDouble());
+        else
+            s = new Circle(sc.nextDouble());
+        System.out.println(s.area());
+        sc.close();
+    }
+}
