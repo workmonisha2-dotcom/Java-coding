@@ -1,4 +1,4 @@
-Student Grade Evaluation 
+
 
 import java.util.Scanner;
 public class StudentResult {
