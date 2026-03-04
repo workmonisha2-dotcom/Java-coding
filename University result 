@@ -1,0 +1,23 @@
+
+class Student {
+    String name;
+    int[] marks;
+    int totalMarks() {
+        int total = 0;
+        for (int m : marks) total += m;
+        return total;
+    }
+    boolean isPass() {
+        for (int m : marks) {
+            if (m < 40) return false;
+        }
+        return true;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.marks = new int[]{55, 65, 70, 35};
+     System.out.println(s.isPass() ? "Pass" : "Fail");
+    }
+}
