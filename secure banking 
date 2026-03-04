@@ -1,0 +1,39 @@
+
+import java.util.Scanner;
+class InvalidPinException extends Exception {
+    public InvalidPinException(String msg) {
+        super(msg);
+    }
+}
+public class Bank {
+    static int balance = 10000;
+    static int pin = 1234;
+    static void checkPin(int enteredPin) throws InvalidPinException {
+        if (enteredPin != pin) {
+            throw new InvalidPinException("Wrong PIN! Access Denied.");
+        }
+    }
+    public static void main(String[] args) {
+          Scanner sc = new Scanner(System.in);
+          try {
+            System.out.print("Enter PIN: ");
+            int p = sc.nextInt();
+            checkPin(p);          
+            System.out.println("Login Successful");
+            System.out.print("Enter withdraw amount: ");
+            int amt = sc.nextInt();
+           if (amt > balance) {
+                System.out.println("Insufficient Balance");
+            } else {
+                balance -= amt;
+                System.out.println("Withdraw Successful");
+                System.out.println("Remaining Balance: " + balance);
+            }
+
+        } catch (InvalidPinException e) {
+            System.out.println(e.getMessage());
+        }
+
+        sc.close();
+    }
+}
