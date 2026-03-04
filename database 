@@ -1,0 +1,134 @@
+
+CREATE DATABASE employee_db;
+
+USE employee_db;
+
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    department VARCHAR(50),
+    salary DOUBLE
+);
+Compile:
+javac -cp .;mysql-connector-j-9.6.0.jar EmployeeManagementSystem.java
+
+Run:
+java -cp .;mysql-connector-j-9.6.0.jar EmployeeManagementSystem
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class EmployeeManagementSystem {
+
+    static final String URL = "jdbc:mysql://localhost:3306/employee_db";
+    static final String USER = "root";
+    static final String PASS = ""; // change according to your MySQL password
+
+    static Connection con;
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        try {
+            // Load Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Create Connection
+            con = DriverManager.getConnection(URL, USER, PASS);
+
+            int choice;
+            do {
+                System.out.println("\n===== EMPLOYEE SALARY MANAGEMENT SYSTEM =====");
+                System.out.println("1. Add Employee");
+                System.out.println("2. View Employees");
+                System.out.println("3. Update Salary");
+                System.out.println("4. Delete Employee");
+                System.out.println("5. Exit");
+                System.out.print("Enter your choice: ");
+                choice = sc.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        addEmployee();
+                        break;
+                    case 2:
+                        viewEmployees();
+                        break;
+                    case 3:
+                        updateSalary();
+                        break;
+                    case 4:
+                        deleteEmployee();
+                        break;
+                    case 5:
+                        System.out.println("Thank you!");
+                        break;
+                    default:
+                        System.out.println("Invalid choice!");
+                }
+
+            } while (choice != 5);
+
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    // 1. Add Employee
+    static void addEmployee() throws SQLException {
+        System.out.print("Enter name: ");
+        String name = sc.next();
+        System.out.print("Enter department: ");
+        String dept = sc.next();
+        System.out.print("Enter salary: ");
+        double salary = sc.nextDouble();
+
+        PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO employees(name, department, salary) VALUES (?, ?, ?)");
+
+        ps.setString(1, name);
+        ps.setString(2, dept);
+        ps.setDouble(3, salary);
+
+        ps.executeUpdate();
+        System.out.println("Employee added successfully!");
+    }
+
+    // 2. View Employees
+    static void viewEmployees() throws SQLException {
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM employees");
+
+        System.out.println("\nID\tName\tDepartment\tSalary");
+        System.out.println("--------------------------------------------");
+
+        while (rs.next()) {
+            System.out.println(
+                    rs.getInt("id") + "\t" +
+                    rs.getString("name") + "\t" +
+                    rs.getString("department") + "\t\t" +
+                    rs.getDouble("salary"));
+        }
+    }
+
+    // 3. Update Salary
+    static void updateSalary() throws SQLException {
+        System.out.print("Enter employee ID to update salary: ");
+        int id = sc.nextInt();
+        System.out.print("Enter new salary: ");
+        double salary = sc.nextDouble();
+
+        PreparedStatement ps = con.prepareStatement(
+                "UPDATE employees SET salary=? WHERE id=?");
+
+        ps.setDouble(1, salary);
+        ps.setInt(2, id);
+
+        ps.executeUpdate();
+        System.out.println("Salary updated successfully!");
+    }
+
+    // 4. Delete Employee
+    static void deleteEmployee() throws
