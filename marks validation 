@@ -1,0 +1,30 @@
+
+import java.util.Scanner;
+public class MarksCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Enter Total Marks: ");
+            int total = sc.nextInt();
+           System.out.print("Enter Obtained Marks: ");
+            int obtained = sc.nextInt();
+            if (obtained < 0 || obtained > total) {
+                throw new Exception("Invalid Marks");
+            }
+            int percentage = (obtained * 100) / total;
+            System.out.println("Percentage: " + percentage + "%");
+            if (percentage >= 40) {
+                System.out.println("Result: PASS");
+            } else {
+                System.out.println("Result: FAIL");
+            }
+        } catch (ArithmeticException e) {
+           System.out.println("Arithmetic Error: Division by Zero");
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            sc.close();
+            System.out.println("Process Completed");
+        }
+    }
+}
