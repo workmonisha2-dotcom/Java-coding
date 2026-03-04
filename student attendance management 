@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+class Student {
+    String name;
+    int totalClasses;
+    int attendedClasses;
+
+    void getData(String n, int total, int attended) {
+        name = n;
+        totalClasses = total;
+        attendedClasses = attended;
+    }
+
+    double calculateAttendance() {
+        return (attendedClasses * 100.0) / totalClasses;
+    }
+
+    void display() {
+        double percentage = calculateAttendance();
+
+        System.out.println("\n--- Attendance Details ---");
+        System.out.println("Student Name: " + name);
+        System.out.println("Total Classes: " + totalClasses);
+        System.out.println("Attended Classes: " + attendedClasses);
+        System.out.println("Attendance Percentage: " + percentage + "%");
+
+        if (percentage >= 75) {
+            System.out.println("Status: Eligible for Exam");
+        } else {
+            System.out.println("Status: Not Eligible for Exam");
+        }
+    }
+}
+
+public class AttendanceSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Student s = new Student();
+
+        System.out.print("Enter Student Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Total Classes: ");
+        int total = sc.nextInt();
+
+        System.out.print("Enter Attended Classes: ");
+        int attended = sc.nextInt();
+
+        s.getData(name, total, attended);
+        s.display();
+    }
+}
