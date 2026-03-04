@@ -1,0 +1,32 @@
+
+/*
+<applet code ="mypack.StudentInfoApplet" width="300" height="200">
+</applet>
+*/
+package mypack;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+public class StudentInfoApplet extends Applet implements ActionListener {
+    TextField t1, t2;
+    Button b;
+    String msg = "";
+    public void init() {
+        add(new Label("Name:"));
+        t1 = new TextField(10);
+        add(t1);
+        add(new Label("Roll No:"));
+        t2 = new TextField(10);
+        add(t2);
+        b = new Button("Show");
+        add(b);
+        b.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent e) {
+                repaint();
+    }
+    public void paint(Graphics g) {
+        g.drawString("Name: "+t1.getText(),20,120);
+        g.drawString("Roll No: "+t2.getText(),20,140);
+    }
+}
