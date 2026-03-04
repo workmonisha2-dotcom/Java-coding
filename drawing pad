@@ -1,0 +1,24 @@
+
+/*
+<applet code ="mypack.DrawingPadApplet" width="300" height="200">
+</applet>
+*/
+package mypack;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+public class DrawingPadApplet extends Applet implements MouseMotionListener {
+    int x, y;
+    public void init() {
+        addMouseMotionListener(this);
+    }
+    public void mouseDragged(MouseEvent e) {
+        x = e.getX();
+        y = e.getY();
+        repaint();
+    }
+    public void mouseMoved(MouseEvent e) { }
+    public void paint(Graphics g) {
+        g.fillOval(x, y, 5, 5);
+    }
+}
