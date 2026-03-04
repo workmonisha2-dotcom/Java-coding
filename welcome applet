@@ -1,0 +1,25 @@
+
+/*
+<applet code="mypack.WelcomeApplet" width="300" height="200">
+</applet>
+*/
+package mypack;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+public class WelcomeApplet extends Applet implements ActionListener {
+    Button b;
+    String msg = "";
+    public void init() {
+        b = new Button("Click Me");
+        add(b);
+        b.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent e) {
+        msg = "Welcome to Java Applet!";
+        repaint();
+    }
+    public void paint(Graphics g) {
+        g.drawString(msg, 50, 100);
+    }
+}
